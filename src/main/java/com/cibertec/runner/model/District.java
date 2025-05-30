@@ -8,14 +8,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Data
 @Entity
-@Table (name = "tb_material")
-public class Material {
+@Data
+@Table(name = "tb_district")
+public class District {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_mtl")
-	private Integer id;
-	@Column(name = "name", nullable = false, length = 100, unique = true)
+	@Column (name = "id_dtc")
+	private Integer idDto;
+	@Column (name = "name", nullable = false, length = 100, unique = true)
 	private String name;
+	
 }

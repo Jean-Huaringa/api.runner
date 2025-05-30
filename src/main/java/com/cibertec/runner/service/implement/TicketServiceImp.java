@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import com.cibertec.runner.dto.request.TicketDTO;
 import com.cibertec.runner.dto.response.SuccessResponse;
 import com.cibertec.runner.model.Ticket;
-import com.cibertec.runner.model.Usuario;
+import com.cibertec.runner.model.User;
 import com.cibertec.runner.repository.ITicketRepository;
-import com.cibertec.runner.repository.IUsuarioRepository;
+import com.cibertec.runner.repository.IUserRepository;
 import com.cibertec.runner.service.TicketService;
 
 import jakarta.transaction.Transactional;
@@ -27,7 +27,7 @@ public class TicketServiceImp implements TicketService {
 	private ITicketRepository tkRepo;
 	
 	@Autowired
-	private IUsuarioRepository usuRepo;
+	private IUserRepository usuRepo;
 
     @Override
     public ResponseEntity<SuccessResponse<List<Ticket>>> findAllTickets() {
@@ -68,12 +68,12 @@ public class TicketServiceImp implements TicketService {
     @Override
     @Transactional
     public ResponseEntity<SuccessResponse<Ticket>> saveTicket(TicketDTO ticketDTO) {
-        Usuario usuario = usuRepo.findById(ticketDTO.getIdUsr())
+        User usuario = usuRepo.findById(ticketDTO.getIdUsr())
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
         Ticket ticket = new Ticket();
         ticket.setIdUsr(usuario.getId());
-        ticket.setDireccion(ticketDTO.getDireccion());
+        ticket.setDirection(ticketDTO.getDireccion());
 
         Ticket ticketGuardado = tkRepo.save(ticket);
 
@@ -92,13 +92,13 @@ public class TicketServiceImp implements TicketService {
     public ResponseEntity<SuccessResponse<Ticket>> updateTicket(TicketDTO ticketDTO, Integer id) {
         Optional<Ticket> ticketOpt = tkRepo.findById(id);
 
-        Usuario usuario = usuRepo.findById(ticketDTO.getIdUsr())
+        User usuario = usuRepo.findById(ticketDTO.getIdUsr())
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
         if (ticketOpt.isPresent()) {
             Ticket ticket = ticketOpt.get();
             ticket.setIdUsr(usuario.getId());
-            ticket.setDireccion(ticketDTO.getDireccion());
+            ticket.setDirection(ticketDTO.getDireccion());
 
             Ticket ticketActualizado = tkRepo.save(ticket);
 

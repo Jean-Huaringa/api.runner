@@ -24,18 +24,18 @@ public class Ticket {
     @Column(name = "id_tck")
 	private Integer id;
 	
-	@Column(name = "direccion", nullable = false, length = 100)
-	private String direccion;
+	@Column(name = "direction", nullable = false, length = 100)
+	private String direction;
 	
-	@Column(name = "fecha_creacion")
+	@Column(name = "date_creation")
     @CreationTimestamp
-	private LocalDateTime fechaCreacion;
+	private LocalDateTime dateCreation;
 	
 	@Column(name = "id_usr", nullable = false)
 	private Integer idUsr;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_usr", referencedColumnName = "id_usr", insertable = false, updatable = false)
-    private Usuario usuario;
+    private User user;
 	
 }

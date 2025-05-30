@@ -60,12 +60,12 @@ public class MaterialServiceImp implements MaterialService{
 
     @Override
     public ResponseEntity<SuccessResponse<Material>> saveMaterial(Material m) {
-		if(repository.existsByNombre(m.getNombre())) {
+		if(repository.existsByNombre(m.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
     	Material mat = new Material();
-    	mat.setNombre(m.getNombre());
+    	mat.setName(m.getName());
         Material nuevoMaterial = repository.save(mat);
 
         SuccessResponse<Material> success = SuccessResponse.<Material>builder()
@@ -86,7 +86,7 @@ public class MaterialServiceImp implements MaterialService{
         	throw new NoResultException("No se encontro el codigo de material");
         }
 
-        existente.setNombre(m.getNombre());
+        existente.setName(m.getName());
         Material actualizado = repository.save(existente);
 
         SuccessResponse<Material> success = SuccessResponse.<Material>builder()

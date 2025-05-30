@@ -2,11 +2,11 @@ package com.cibertec.runner.dto.response;
 
 import java.util.List;
 
-import com.cibertec.runner.model.Categoria;
-import com.cibertec.runner.model.Marca;
+import com.cibertec.runner.model.Brand;
+import com.cibertec.runner.model.Category;
 import com.cibertec.runner.model.Material;
-import com.cibertec.runner.model.Persona;
-import com.cibertec.runner.model.Producto;
+import com.cibertec.runner.model.Person;
+import com.cibertec.runner.model.Product;
 
 import lombok.Data;
 
@@ -21,9 +21,9 @@ public class ModeloProductoResponse {
 	private Integer idMrc;
 	private Integer idPrn;
 	private Integer idMtl;
-    private Categoria categoria;
-    private Marca marca;
-    private Persona persona;
+    private Category categoria;
+    private Brand marca;
+    private Person persona;
     private Material material;
-    private List<Producto> productos;
+    private List<Product> productos;
 }

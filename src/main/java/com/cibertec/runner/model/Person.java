@@ -10,11 +10,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table (name = "tb_material")
-public class Material {
+@Table(name = "tb_person")
+public class Person {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_mtl")
+	@Column(name = "id_prn")
 	private Integer id;
 	@Column(name = "name", nullable = false, length = 100, unique = true)
 	private String name;

@@ -16,7 +16,7 @@ public class Color {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name = "id_clr")
 	private Integer id;
-	@Column (name = "nombre", nullable = false, length = 100, unique = true)
-	private String nombre;
+	@Column (name = "name", nullable = false, length = 100, unique = true)
+	private String name;
 	
 }

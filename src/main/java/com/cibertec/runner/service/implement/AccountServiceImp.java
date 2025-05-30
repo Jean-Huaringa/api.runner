@@ -13,10 +13,10 @@ import com.cibertec.runner.dto.request.RegisterUserDTO;
 import com.cibertec.runner.dto.request.UpdatePasswordDTO;
 import com.cibertec.runner.dto.request.UpdateUserDTO;
 import com.cibertec.runner.dto.response.UserResponse;
-import com.cibertec.runner.model.Distrito;
-import com.cibertec.runner.model.Usuario;
-import com.cibertec.runner.repository.IDistritoRepository;
-import com.cibertec.runner.repository.IUsuarioRepository;
+import com.cibertec.runner.model.District;
+import com.cibertec.runner.model.User;
+import com.cibertec.runner.repository.IDistrictRepository;
+import com.cibertec.runner.repository.IUserRepository;
 import com.cibertec.runner.service.AccountService;
 import com.cibertec.runner.service.JwtService;
 import com.cibertec.runner.util.ValidateText;
@@ -27,18 +27,18 @@ public class AccountServiceImp implements AccountService{
 	@Autowired
 	private ValidateText vt;
 	@Autowired
-	private IUsuarioRepository userRepository;
+	private IUserRepository userRepository;
 	@Autowired
 	private JwtService jwtService;
 	@Autowired
-	private IDistritoRepository distritoRep;
+	private IDistrictRepository distritoRep;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public void registerUser(RegisterUserDTO request) {
 
-		if (userRepository.findByCorreo(request.getCorreo()).isPresent()) {
+		if (userRepository.findByMail(request.getCorreo()).isPresent()) {
 			throw new IllegalArgumentException("El correo ya está registrado");
 		}
 
@@ -60,18 +60,18 @@ public class AccountServiceImp implements AccountService{
 		vt.hasValidLength(request.getContrasenia(), 5, 60, "Contraseña");
 		vt.hasNoneCharacterDanger(request.getContrasenia(), "Contraseña");
 
-		Usuario user = new Usuario();
-		user.setNombre(request.getNombre());
-		user.setApellido(request.getApellido());
-		user.setNmrDocumento(request.getNmrDocumento());
-		user.setTelefono(request.getTelefono());
-		user.setCorreo(request.getCorreo());
-		user.setContrasenia(passwordEncoder.encode(request.getContrasenia()));
-		user.setRol("USER");
+		User user = new User();
+		user.setName(request.getNombre());
+		user.setLastname(request.getApellido());
+		user.setNmrDocument(request.getNmrDocumento());
+		user.setPhone(request.getTelefono());
+		user.setMail(request.getCorreo());
+		user.setPassword(passwordEncoder.encode(request.getContrasenia()));
+		user.setRole("USER");
 
-		Distrito d = distritoRep.findById(request.getIdDto()).orElse(null);
+		District d = distritoRep.findById(request.getIdDto()).orElse(null);
 		if (d != null) {
-			user.setIdDto(request.getIdDto());
+			user.setIdDtc(request.getIdDto());
 		} else {
 			throw new RuntimeException("No se encontro un distrito");
 		}
@@ -82,7 +82,7 @@ public class AccountServiceImp implements AccountService{
 	public void updateUser(UpdateUserDTO request) {
 		String emailAutenticado = SecurityContextHolder.getContext().getAuthentication().getName();
 
-		Usuario user = userRepository.findByCorreo(emailAutenticado)
+		User user = userRepository.findByMail(emailAutenticado)
 				.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
 		vt.isRequired(request.getNombre(), "Nombre");
@@ -101,10 +101,10 @@ public class AccountServiceImp implements AccountService{
 		vt.hasOnlyNumbers(request.getTelefono(), "Telefono");
 		vt.hasValidLength(request.getTelefono(), 9, 12, "Telefono");
 
-		user.setNombre(request.getNombre());
-		user.setApellido(request.getApellido());
-		user.setNmrDocumento(request.getNmrDocumento());
-		user.setTelefono(request.getTelefono());
+		user.setName(request.getNombre());
+		user.setLastname(request.getApellido());
+		user.setNmrDocument(request.getNmrDocumento());
+		user.setPhone(request.getTelefono());
 
 		userRepository.save(user);
 
@@ -114,10 +114,10 @@ public class AccountServiceImp implements AccountService{
 	public String signin(LoginDTO request) {
 		vt.hasNoneCharacterDanger(request.getCorreo(), "Correo");
 		vt.hasNoneCharacterDanger(request.getContrasenia(), "Contraseña");
-		Usuario usuario = userRepository.findByCorreo(request.getCorreo()).orElse(null);
+		User usuario = userRepository.findByMail(request.getCorreo()).orElse(null);
 
-		if (usuario != null && passwordEncoder.matches(request.getContrasenia(), usuario.getContrasenia())) {
-			return jwtService.generateToken(usuario.getCorreo(), usuario.getRol(), usuario.getNombre());
+		if (usuario != null && passwordEncoder.matches(request.getContrasenia(), usuario.getPassword())) {
+			return jwtService.generateToken(usuario.getMail(), usuario.getRole(), usuario.getName());
 		} else {
 			throw new BadCredentialsException("Usuario y/o contraseña incorrecta");
 		}
@@ -133,10 +133,10 @@ public class AccountServiceImp implements AccountService{
 
 		vt.isRequired(request.getNuevaContrasenia(), "La nueva contraseña");
 
-		Usuario user = userRepository.findByCorreo(emailAutenticado)
+		User user = userRepository.findByMail(emailAutenticado)
 				.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 
-		if (!passwordEncoder.matches(request.getContraseniaActual(), user.getContrasenia())) {
+		if (!passwordEncoder.matches(request.getContraseniaActual(), user.getPassword())) {
 			throw new BadCredentialsException("La contraseña actual es incorrecta");
 		}
 
@@ -144,7 +144,7 @@ public class AccountServiceImp implements AccountService{
 		vt.hasNoneCharacterDanger(request.getNuevaContrasenia(), "Contraseña");
 
 		String newPasswordEncrypted = passwordEncoder.encode(request.getNuevaContrasenia());
-		user.setContrasenia(newPasswordEncrypted);
+		user.setPassword(newPasswordEncrypted);
 		userRepository.save(user);
 	}
 
@@ -154,17 +154,17 @@ public class AccountServiceImp implements AccountService{
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 		if (authentication != null) {
-			Usuario user = userRepository.findByCorreo(authentication.getName())
+			User user = userRepository.findByMail(authentication.getName())
 					.orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
 			
 			UserResponse response = new UserResponse();
 
-			response.setNombre(user.getNombre());
-			response.setApellido(user.getApellido());
-			response.setNmrDocumento(user.getNmrDocumento());
-			response.setTelefono(user.getTelefono());
-			response.setCorreo(user.getCorreo());
-			response.setDistrito(user.getDistrito());
+			response.setNombre(user.getName());
+			response.setApellido(user.getLastname());
+			response.setNmrDocumento(user.getNmrDocument());
+			response.setTelefono(user.getPhone());
+			response.setCorreo(user.getMail());
+			response.setDistrito(user.getDistrict());
 
 			return response;
 

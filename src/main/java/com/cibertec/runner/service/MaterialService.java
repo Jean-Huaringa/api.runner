@@ -13,9 +13,9 @@ public interface MaterialService {
 	
 	public ResponseEntity<SuccessResponse<Material>> findByIdMateriales(Integer id);
 	
-	public ResponseEntity<SuccessResponse<Material>> saveMaterial(Material m);
+	public ResponseEntity<SuccessResponse<Material>> saveMaterial(Material material);
 	
-	public ResponseEntity<SuccessResponse<Material>> updateMaterial(Material m, Integer id);
+	public ResponseEntity<SuccessResponse<Material>> updateMaterial(Material material, Integer id);
 	
 	public ResponseEntity<SuccessResponse<String>> deleteByIdMaterial(Integer id);
 }

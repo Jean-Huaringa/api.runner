@@ -14,39 +14,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cibertec.runner.dto.response.SuccessResponse;
-import com.cibertec.runner.model.Person;
-import com.cibertec.runner.service.implement.PersonServiceImp;
+import com.cibertec.runner.model.Brand;
+import com.cibertec.runner.service.implement.BrandServiceImp;
+
 
 @RestController
-@RequestMapping("/api/persona")
-public class PersonaController {
+@RequestMapping("/api/marca")
+public class BrandController {
 	
 	@Autowired
-	private PersonServiceImp ps;
+	private BrandServiceImp ms;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Person>>> findAllPersonas() {
-		return ps.findAllPersonas();
+	public ResponseEntity<SuccessResponse<List<Brand>>> findAllListMarcas() {
+		return ms.findAllListMarcas();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Person>> findByIdPersona(@PathVariable Integer id) {
-		return ps.findByIdPersona(id);
+	public ResponseEntity<SuccessResponse<Brand>> findByIdMarca(@PathVariable Integer id) {
+		return ms.findByIdMarca(id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<SuccessResponse<Person>> savePersona(@RequestBody Person p) {
-		return ps.savePersona(p);
+	public ResponseEntity<SuccessResponse<Brand>> saveMarca(@RequestBody Brand m) {
+		return ms.saveMarca(m);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Person>> updatePersona(@RequestBody Person p, @PathVariable Integer id) {
-		return ps.updatePersona(p, id);
+	public ResponseEntity<SuccessResponse<Brand>> updateMarca(@RequestBody Brand m, @PathVariable Integer id) {
+		return ms.updateMarca(m, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SuccessResponse<String>> deleteByIdPersona(@PathVariable Integer id) {
-		return ps.deleteByIdPersona(id);
+	public ResponseEntity<SuccessResponse<String>> deleteByIdMarca(@PathVariable Integer id) {
+		return ms.deleteByIdMarca(id);
 	}
-
+	
 }
