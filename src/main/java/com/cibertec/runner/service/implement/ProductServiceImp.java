@@ -27,7 +27,7 @@ public class ProductServiceImp implements ProductService {
 	private IProductRepository prorepo;
 
     @Override
-    public ResponseEntity<SuccessResponse<List<Product>>> findAllProductos() {
+    public ResponseEntity<SuccessResponse<List<Product>>> findAllProduct() {
         List<Product> productos = prorepo.findAll();
 
         if (productos.isEmpty()) {
@@ -45,7 +45,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Product>> findByIdProducto(Integer id) {
+    public ResponseEntity<SuccessResponse<Product>> findByIdProduct(Integer id) {
     	Product producto = prorepo.findById(id).orElse(null);
 
         if (producto == null) {
@@ -63,13 +63,9 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Product>> saveProducto(ProductDTO productoDTO) {
+    public ResponseEntity<SuccessResponse<Product>> saveProduct(ProductDTO productoDTO) {
     	
     	Product producto = new Product();
-        producto.setStock(productoDTO.getStock());
-        producto.setIdClr(productoDTO.getIdClr());
-        producto.setIdTll(productoDTO.getIdTll());
-        producto.setIdMdl(productoDTO.getIdMdl());
 
         Product productoGuardado = prorepo.save(producto);
 
@@ -84,17 +80,13 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Product>> updateProducto(Product producto, Integer id) {
+    public ResponseEntity<SuccessResponse<Product>> updateProduct(Product product, Integer id) {
     	Product productoExistente = prorepo.findById(id).orElse(null);
 
         if (productoExistente == null) {
         	throw new NoResultException("No se encontro el codigo del producto");
         }
         
-        productoExistente.setStock(producto.getStock());
-        productoExistente.setIdClr(producto.getIdClr());
-        productoExistente.setIdTll(producto.getIdTll());
-        productoExistente.setIdMdl(producto.getIdMdl());
 
         Product productoGuardado = prorepo.save(productoExistente);
 
@@ -109,7 +101,7 @@ public class ProductServiceImp implements ProductService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<String>> deleteByIdProducto(Integer id) {
+    public ResponseEntity<SuccessResponse<String>> deleteByIdProduct(Integer id) {
     	Product productoExiste = prorepo.findById(id).orElse(null);
 
         if (productoExiste == null) {
@@ -130,20 +122,21 @@ public class ProductServiceImp implements ProductService {
 
     @Override
     public ResponseEntity<SuccessResponse<List<Product>>> findByIdMdl(Integer idMdl) {
-        List<Product> productos = prorepo.findByIdMdl(idMdl);
-
-        if (!productos.isEmpty()) {
-            SuccessResponse<List<Product>> success = SuccessResponse.<List<Product>>builder()
-                    .timestamp(LocalDateTime.now())
-                    .status(HttpStatus.OK.value())
-                    .success(HttpStatus.OK.getReasonPhrase())
-                    .response(productos)
-                    .build();
-
-            return ResponseEntity.ok(success);
-        } else {
-            throw new RuntimeException("No se encontraron productos para el modelo con ID: " + idMdl);
-        }
+//        List<Product> productos = prorepo.findByIdMdl(idMdl);
+//
+//        if (!productos.isEmpty()) {
+//            SuccessResponse<List<Product>> success = SuccessResponse.<List<Product>>builder()
+//                    .timestamp(LocalDateTime.now())
+//                    .status(HttpStatus.OK.value())
+//                    .success(HttpStatus.OK.getReasonPhrase())
+//                    .response(productos)
+//                    .build();
+//
+//            return ResponseEntity.ok(success);
+//        } else {
+//            throw new RuntimeException("No se encontraron productos para el modelo con ID: " + idMdl);
+//        }
+    	return null;
     }
 
     @Transactional

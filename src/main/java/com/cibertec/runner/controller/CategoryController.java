@@ -18,35 +18,35 @@ import com.cibertec.runner.model.Category;
 import com.cibertec.runner.service.implement.CategoryServiceImp;
 
 @RestController
-@RequestMapping("/api/categoria")
+@RequestMapping("/api/category")
 public class CategoryController {
 
 	@Autowired
-	private CategoryServiceImp cs;
+	private CategoryServiceImp service;
 
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Category>>> findAllListCategoria() {
-		return cs.findAllListCategoria();
+	public ResponseEntity<SuccessResponse<List<Category>>> findAllCategory() {
+		return service.findAllCategory();
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Category>> findByIdCategoria(@PathVariable Integer id) {
-		return cs.findByIdCategoria(id);
+	public ResponseEntity<SuccessResponse<Category>> findByIdCategory(@PathVariable Integer id) {
+		return service.findByIdCategory(id);
 	}
 
 	@PostMapping
-	public ResponseEntity<SuccessResponse<Category>> saveCategoria(@RequestBody Category c) {
-		return cs.saveCategoria(c);
+	public ResponseEntity<SuccessResponse<Category>> saveCategory(@RequestBody Category category) {
+		return service.saveCategory(category);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Category>> updateCategoria(@RequestBody Category c,
+	public ResponseEntity<SuccessResponse<Category>> updateCategory(@RequestBody Category category,
 			@PathVariable Integer id) {
-		return cs.updateCategoria(c, id);
+		return service.updateCategory(category, id);
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SuccessResponse<String>> deleteByIdCategoria(@PathVariable Integer id) {
-		return cs.deleteByIdCategoria(id);
+	public ResponseEntity<SuccessResponse<String>> deleteByIdCategory(@PathVariable Integer id) {
+		return service.deleteByIdCategory(id);
 	}
 }

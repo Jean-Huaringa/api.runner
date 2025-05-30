@@ -9,14 +9,14 @@ import com.cibertec.runner.model.Category;
 
 public interface CategoryService {
 
-	public ResponseEntity<SuccessResponse<List<Category>>> findAllListCategoria();
+	ResponseEntity<SuccessResponse<List<Category>>> findAllCategory();
 	
-	public ResponseEntity<SuccessResponse<Category>> findByIdCategoria(Integer id);
+	ResponseEntity<SuccessResponse<Category>> findByIdCategory(Integer id);
 	
-	public ResponseEntity<SuccessResponse<Category>> saveCategoria(Category category);
+	ResponseEntity<SuccessResponse<Category>> saveCategory(Category category);
 	
-	public ResponseEntity<SuccessResponse<Category>> updateCategoria(Category category, Integer id);
+	ResponseEntity<SuccessResponse<Category>> updateCategory(Category category, Integer id);
 	
-	public ResponseEntity<SuccessResponse<String>> deleteByIdCategoria(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteByIdCategory(Integer id);
 	
 }

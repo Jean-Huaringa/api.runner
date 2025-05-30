@@ -14,6 +14,6 @@ public interface TransactionService {
     
 	Transaction saveTransaccion(Transaction transaccion);
     
-    public  ResponseEntity<SuccessResponse<String>> deleteByIdTransaccion(TransactionId id);
+     ResponseEntity<SuccessResponse<String>> deleteByIdTransaccion(TransactionId id);
 	
 }

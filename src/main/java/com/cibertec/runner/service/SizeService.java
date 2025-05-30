@@ -9,14 +9,14 @@ import com.cibertec.runner.model.Size;
 
 public interface SizeService {
 	
-	public ResponseEntity<SuccessResponse<List<Size>>> findAllTalla();
+	ResponseEntity<SuccessResponse<List<Size>>> findAllSize();
 	
-	public ResponseEntity<SuccessResponse<Size>> findByIdTalla(Integer id);
+	ResponseEntity<SuccessResponse<Size>> findByIdSize(Integer id);
 	
-	public ResponseEntity<SuccessResponse<Size>> saveTalla(Size size);
+	ResponseEntity<SuccessResponse<Size>> saveSize(Size size);
 	
-	public ResponseEntity<SuccessResponse<Size>> updateTallla(Size size, Integer id);
+	ResponseEntity<SuccessResponse<Size>> updateSize(Size size, Integer id);
 	
-	public ResponseEntity<SuccessResponse<String>> deleteTalla(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteSize(Integer id);
 
 }

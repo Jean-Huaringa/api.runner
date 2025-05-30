@@ -11,17 +11,17 @@ import com.cibertec.runner.model.Product;
 
 public interface ProductService {
 
-	public ResponseEntity<SuccessResponse<List<Product>>> findAllProductos();
+	ResponseEntity<SuccessResponse<List<Product>>> findAllProduct();
 
-	public ResponseEntity<SuccessResponse<Product>> findByIdProducto(Integer id);
+	ResponseEntity<SuccessResponse<Product>> findByIdProduct(Integer id);
 
-	public ResponseEntity<SuccessResponse<Product>> saveProducto(ProductDTO productoDTO);
+	ResponseEntity<SuccessResponse<Product>> saveProduct(ProductDTO productoDTO);
 
-	public ResponseEntity<SuccessResponse<Product>> updateProducto(Product product, Integer id);
+	ResponseEntity<SuccessResponse<Product>> updateProduct(Product product, Integer id);
 
-	public ResponseEntity<SuccessResponse<String>> deleteByIdProducto(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteByIdProduct(Integer id);
 
-	public ResponseEntity<SuccessResponse<List<Product>>> findByIdMdl(Integer id);
+	ResponseEntity<SuccessResponse<List<Product>>> findByIdMdl(Integer id);
 	
-	public ResponseEntity<SuccessResponse<List<Product>>> findByAttributes(FilterProductDTO filtro);
+	ResponseEntity<SuccessResponse<List<Product>>> findByAttributes(FilterProductDTO filtro);
 }

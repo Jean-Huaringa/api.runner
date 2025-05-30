@@ -23,7 +23,7 @@ public class BrandServiceImp implements BrandService {
     private IBrandRepository repository;
 
     @Override
-    public ResponseEntity<SuccessResponse<List<Brand>>> findAllListMarcas() {
+    public ResponseEntity<SuccessResponse<List<Brand>>> findAllBrand() {
 
         List<Brand> marcas = repository.findAll();
 
@@ -42,7 +42,7 @@ public class BrandServiceImp implements BrandService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Brand>> findByIdMarca(Integer id) {
+    public ResponseEntity<SuccessResponse<Brand>> findByIdBrand(Integer id) {
 
     	Brand marca = repository.findById(id).orElse(null);
 
@@ -61,14 +61,14 @@ public class BrandServiceImp implements BrandService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Brand>> saveMarca(Brand marca) {
+    public ResponseEntity<SuccessResponse<Brand>> saveBrand(Brand brand) {
     	
-		if(repository.existsByNombre(marca.getName())) {
+		if(repository.existsByName(brand.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
 		Brand mar = new Brand();
-		mar.setName(marca.getName());
+		mar.setName(brand.getName());
 		Brand nuevaMarca = repository.save(mar);
 
         SuccessResponse<Brand> success = SuccessResponse.<Brand>builder()
@@ -82,9 +82,9 @@ public class BrandServiceImp implements BrandService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Brand>> updateMarca(Brand marca, Integer id) {
+    public ResponseEntity<SuccessResponse<Brand>> updateBrand(Brand brand, Integer id) {
 
-		if(repository.existsByNombre(marca.getName())) {
+		if(repository.existsByName(brand.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
@@ -94,7 +94,7 @@ public class BrandServiceImp implements BrandService {
         	throw new NoResultException("No se encontro el codigo de la marca");
         }
 
-        existente.setName(marca.getName());
+        existente.setName(brand.getName());
 
         Brand actualizada = repository.save(existente);
 
@@ -109,7 +109,7 @@ public class BrandServiceImp implements BrandService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<String>> deleteByIdMarca(Integer id) {
+    public ResponseEntity<SuccessResponse<String>> deleteByIdBrand(Integer id) {
 
     	Brand marca = repository.findById(id).orElse(null);
 

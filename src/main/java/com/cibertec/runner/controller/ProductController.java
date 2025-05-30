@@ -21,45 +21,45 @@ import com.cibertec.runner.service.implement.ProductServiceImp;
 
 
 @RestController
-@RequestMapping("/api/producto")
+@RequestMapping("/api/product")
 public class ProductController {
 	
 	@Autowired
-	private ProductServiceImp psimpl;
+	private ProductServiceImp service;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Product>>> findAllProductos(){
-		return psimpl.findAllProductos();
+	public ResponseEntity<SuccessResponse<List<Product>>> findAllProduct(){
+		return service.findAllProduct();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Product>> findByIdProducto(@PathVariable Integer id) {
-	    return psimpl.findByIdProducto(id);
+	public ResponseEntity<SuccessResponse<Product>> findByIdProduct(@PathVariable Integer id) {
+	    return service.findByIdProduct(id);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Product>> updateProducto(@RequestBody Product producto, @PathVariable Integer id){
-		return psimpl.updateProducto(producto, id);
+	public ResponseEntity<SuccessResponse<Product>> updateProduct(@RequestBody Product product, @PathVariable Integer id){
+		return service.updateProduct(product, id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<SuccessResponse<Product>> saveProducto(@RequestBody ProductDTO productoDTO){
-		return psimpl.saveProducto(productoDTO);
+	public ResponseEntity<SuccessResponse<Product>> saveProduct(@RequestBody ProductDTO productDTO){
+		return service.saveProduct(productDTO);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SuccessResponse<String>> deleteByIdProducto(@PathVariable Integer id) {
-	    return psimpl.deleteByIdProducto(id);
+	public ResponseEntity<SuccessResponse<String>> deleteByIdProduct(@PathVariable Integer id) {
+	    return service.deleteByIdProduct(id);
 	}
 	
 	@GetMapping("/modelo/{idMdl}")
 	public ResponseEntity<SuccessResponse<List<Product>>> findByIdMdl(@PathVariable Integer idMdl) {
-	    return psimpl.findByIdMdl(idMdl);
+	    return service.findByIdMdl(idMdl);
 	}
 	
 	@PostMapping("/filtros")
 	public ResponseEntity<SuccessResponse<List<Product>>> findByAttributes(@RequestBody FilterProductDTO filtro) {
-	    return psimpl.findByAttributes(filtro);
+	    return service.findByAttributes(filtro);
 	}
 
 }

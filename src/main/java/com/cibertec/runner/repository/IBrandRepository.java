@@ -7,5 +7,5 @@ import com.cibertec.runner.model.Brand;
 
 @Repository
 public interface IBrandRepository extends JpaRepository<Brand, Integer> {
-	boolean existsByNombre(String nombre);
+	boolean existsByName(String name);
 }

@@ -25,7 +25,7 @@ public class SizeServiceImp implements SizeService{
 	private ISizeRepository repository;
 
     @Override
-    public ResponseEntity<SuccessResponse<List<Size>>> findAllTalla() {
+    public ResponseEntity<SuccessResponse<List<Size>>> findAllSize() {
         List<Size> tallas = repository.findAll(Sort.by("id").ascending());
 
         if (tallas.isEmpty()) {
@@ -43,7 +43,7 @@ public class SizeServiceImp implements SizeService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Size>> findByIdTalla(Integer id) {
+    public ResponseEntity<SuccessResponse<Size>> findByIdSize(Integer id) {
     	Size talla = repository.findById(id).orElse(null);
 
         if (talla == null) {
@@ -61,15 +61,15 @@ public class SizeServiceImp implements SizeService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Size>> saveTalla(Size talla) {
+    public ResponseEntity<SuccessResponse<Size>> saveSize(Size size) {
     	
-    	if(repository.existsByNombre(talla.getName())) {
+    	if(repository.existsByName(size.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
         
 
     	Size newTalla = new Size();
-        newTalla.setName(talla.getName());
+        newTalla.setName(size.getName());
         Size tallaGuardada = repository.save(newTalla);
 
         SuccessResponse<Size> success = SuccessResponse.<Size>builder()
@@ -83,8 +83,8 @@ public class SizeServiceImp implements SizeService{
     }
 
 	@Override
-	public ResponseEntity<SuccessResponse<Size>> updateTallla(Size talla, Integer id) {
-		if(repository.existsByNombre(talla.getName())) {
+	public ResponseEntity<SuccessResponse<Size>> updateSize(Size size, Integer id) {
+		if(repository.existsByName(size.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
@@ -94,7 +94,7 @@ public class SizeServiceImp implements SizeService{
         	throw new NoResultException("No se encontro el codigo de material");
         }
 
-        existente.setName(talla.getName());
+        existente.setName(size.getName());
         
         Size actualizado = repository.save(existente);
 
@@ -109,7 +109,7 @@ public class SizeServiceImp implements SizeService{
 	}
 
 	@Override
-	public ResponseEntity<SuccessResponse<String>> deleteTalla(Integer id) {
+	public ResponseEntity<SuccessResponse<String>> deleteSize(Integer id) {
 		Size talla = repository.findById(id).orElse(null);
 
         if (talla == null) {

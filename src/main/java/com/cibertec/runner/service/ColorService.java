@@ -10,13 +10,13 @@ import com.cibertec.runner.model.Color;
 public interface ColorService {
 	
 	
-	public ResponseEntity<SuccessResponse<List<Color>>> findAllColor();
+	ResponseEntity<SuccessResponse<List<Color>>> findAllColor();
 	
-	public ResponseEntity<SuccessResponse<Color>> findByIdColor(Integer id);
+	ResponseEntity<SuccessResponse<Color>> findByIdColor(Integer id);
 	
-	public ResponseEntity<SuccessResponse<Color>> saveColor(Color color);
+	ResponseEntity<SuccessResponse<Color>> saveColor(Color color);
 
-	public ResponseEntity<SuccessResponse<Color>> updateColor(Color color, Integer id);
+	ResponseEntity<SuccessResponse<Color>> updateColor(Color color, Integer id);
 
-	public ResponseEntity<SuccessResponse<String>> deleteByIdColor(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteByIdColor(Integer id);
 }

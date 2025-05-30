@@ -10,27 +10,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cibertec.runner.dto.response.SuccessResponse;
-import com.cibertec.runner.model.Person;
-import com.cibertec.runner.repository.IPersonRepository;
-import com.cibertec.runner.service.PersonService;
+import com.cibertec.runner.model.Gender;
+import com.cibertec.runner.repository.IGenderRepository;
+import com.cibertec.runner.service.GenderService;
 
 import jakarta.persistence.NoResultException;
 
 @Service
-public class PersonServiceImp implements PersonService{
+public class GenderServiceImp implements GenderService{
 
 	@Autowired
-	private IPersonRepository repository;
+	private IGenderRepository repository;
 
     @Override
-    public ResponseEntity<SuccessResponse<List<Person>>> findAllPersonas() {
-        List<Person> personas = repository.findAll();
+    public ResponseEntity<SuccessResponse<List<Gender>>> findAllPerson() {
+        List<Gender> personas = repository.findAll();
 
         if (personas.isEmpty()) {
         	throw new NoResultException("No se encontro ningun tipo de persona");
         }
         
-        SuccessResponse<List<Person>> success = SuccessResponse.<List<Person>>builder()
+        SuccessResponse<List<Gender>> success = SuccessResponse.<List<Gender>>builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.OK.value())
                 .success(HttpStatus.OK.getReasonPhrase())
@@ -41,15 +41,15 @@ public class PersonServiceImp implements PersonService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Person>> findByIdPersona(Integer id) {
+    public ResponseEntity<SuccessResponse<Gender>> findByIdPerson(Integer id) {
     	
-    	Person persona = repository.findById(id).orElse(null);
+    	Gender persona = repository.findById(id).orElse(null);
 
         if (persona == null) {
         	throw new NoResultException("No se encontro el codigo del tipo de persona");
         }
         
-        SuccessResponse<Person> success = SuccessResponse.<Person>builder()
+        SuccessResponse<Gender> success = SuccessResponse.<Gender>builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.OK.value())
                 .success(HttpStatus.OK.getReasonPhrase())
@@ -59,17 +59,17 @@ public class PersonServiceImp implements PersonService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Person>> savePersona(Person p) {
+    public ResponseEntity<SuccessResponse<Gender>> savePerson(Gender gender) {
     	
-		if(repository.existsByNombre(p.getName())) {
+		if(repository.existsByName(gender.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
-		Person newPersona = new Person();
-        newPersona.setName(p.getName());
-        Person personaGuardada = repository.save(newPersona);
+		Gender newPersona = new Gender();
+        newPersona.setName(gender.getName());
+        Gender personaGuardada = repository.save(newPersona);
 
-        SuccessResponse<Person> success = SuccessResponse.<Person>builder()
+        SuccessResponse<Gender> success = SuccessResponse.<Gender>builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.CREATED.value())
                 .success(HttpStatus.CREATED.getReasonPhrase())
@@ -82,18 +82,18 @@ public class PersonServiceImp implements PersonService{
     
 
     @Override
-    public ResponseEntity<SuccessResponse<Person>> updatePersona(Person p, Integer id) {
+    public ResponseEntity<SuccessResponse<Gender>> updatePerson(Gender gender, Integer id) {
     	
-    	Person personaExistente = repository.findById(id).orElse(null);
+    	Gender personaExistente = repository.findById(id).orElse(null);
 
         if (personaExistente == null) {
         	throw new NoResultException("No se encontro el codigo del tipo de persona");
         }
 
-        personaExistente.setName(p.getName());
-        Person personaActualizada = repository.save(personaExistente);
+        personaExistente.setName(gender.getName());
+        Gender personaActualizada = repository.save(personaExistente);
 
-        SuccessResponse<Person> success = SuccessResponse.<Person>builder()
+        SuccessResponse<Gender> success = SuccessResponse.<Gender>builder()
                 .timestamp(LocalDateTime.now())
                 .status(HttpStatus.OK.value())
                 .success(HttpStatus.OK.getReasonPhrase())
@@ -104,9 +104,9 @@ public class PersonServiceImp implements PersonService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<String>> deleteByIdPersona(Integer id) {
+    public ResponseEntity<SuccessResponse<String>> deleteByIdPerson(Integer id) {
     	
-    	Person persona = repository.findById(id).orElse(null);
+    	Gender persona = repository.findById(id).orElse(null);
 
         if (persona == null) {
         	throw new NoResultException("No se encontro el codigo del tipo de persona");

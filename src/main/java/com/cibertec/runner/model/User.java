@@ -59,7 +59,7 @@ public class User {
 	
 //	@ManyToOne(fetch = FetchType.LAZY)
 	@ManyToOne
-	@JoinColumn(name = "id_dto", referencedColumnName = "id_dto", insertable = false, updatable = false)
+	@JoinColumn(name = "id_dtc", referencedColumnName = "id_dtc", insertable = false, updatable = false)
     private District district;
     
     

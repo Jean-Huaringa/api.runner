@@ -7,6 +7,6 @@ import com.cibertec.runner.model.Size;
 
 @Repository
 public interface ISizeRepository extends JpaRepository<Size, Integer>{
-	
-	boolean existsByNombre(String nombre);
+
+	boolean existsByName(String name);
 }

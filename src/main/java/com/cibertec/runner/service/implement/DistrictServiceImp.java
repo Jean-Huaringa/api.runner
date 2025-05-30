@@ -23,7 +23,7 @@ public class DistrictServiceImp implements DistrictService {
     private IDistrictRepository repository;
 
     @Override
-    public ResponseEntity<SuccessResponse<District>> findByIdDistrito(Integer id) {
+    public ResponseEntity<SuccessResponse<District>> findByIdDistrict(Integer id) {
     	District distrito = repository.findById(id).orElse(null);
 
         if (distrito == null) {
@@ -40,7 +40,7 @@ public class DistrictServiceImp implements DistrictService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<List<District>>> findAllDistrito() {
+    public ResponseEntity<SuccessResponse<List<District>>> findAllDistrict() {
         List<District> distritos = repository.findAll();
 
         if (distritos.isEmpty()) {
@@ -57,14 +57,14 @@ public class DistrictServiceImp implements DistrictService {
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<District>> saveDistrito(District distrito) {
+    public ResponseEntity<SuccessResponse<District>> saveDistrict(District district) {
     	
-		if(repository.existsByNombre(distrito.getName())) {
+		if(repository.existsByName(district.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 
 		District dis = new District();
-		dis.setName(distrito.getName());
+		dis.setName(district.getName());
 		
 		District savedDistrito = repository.save(dis);
 
@@ -79,9 +79,9 @@ public class DistrictServiceImp implements DistrictService {
     }
 
 	@Override
-	public ResponseEntity<SuccessResponse<District>> updateDistrito(District distrito, Integer id) {
+	public ResponseEntity<SuccessResponse<District>> updateDistrict(District district, Integer id) {
 
-		if(repository.existsByNombre(distrito.getName())) {
+		if(repository.existsByName(district.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
@@ -91,7 +91,7 @@ public class DistrictServiceImp implements DistrictService {
         	throw new NoResultException("No se encontro el codigo de material");
         }
 
-        existente.setName(distrito.getName());
+        existente.setName(district.getName());
         
         District actualizado = repository.save(existente);
 
@@ -106,7 +106,7 @@ public class DistrictServiceImp implements DistrictService {
 	}
 
 	@Override
-	public ResponseEntity<SuccessResponse<String>> deleteDistrito(Integer id) {
+	public ResponseEntity<SuccessResponse<String>> deleteDistrict(Integer id) {
 		District distrito= repository.findById(id).orElse(null);
 
         if (distrito == null) {

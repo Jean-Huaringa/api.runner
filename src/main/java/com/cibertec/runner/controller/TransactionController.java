@@ -17,25 +17,25 @@ import com.cibertec.runner.model.TransactionId;
 import com.cibertec.runner.service.TransactionService;
 
 @RestController
-@RequestMapping("/api/transaccion")
+@RequestMapping("/api/transaction")
 public class TransactionController {
 	
 	@Autowired
-    private TransactionService transaccionService;
+    private TransactionService service;
 
     @GetMapping
     public ResponseEntity<List<Transaction>> findAllListTransaccion() {
-        return ResponseEntity.ok(transaccionService.findAllListTransaccion());
+        return ResponseEntity.ok(service.findAllListTransaccion());
     }
 
     @PostMapping
-    public ResponseEntity<Transaction> saveTransaccion(@RequestBody Transaction transaccion) {
-        return ResponseEntity.ok(transaccionService.saveTransaccion(transaccion));
+    public ResponseEntity<Transaction> saveTransaccion(@RequestBody Transaction transaction) {
+        return ResponseEntity.ok(service.saveTransaccion(transaction));
     }
     
     @DeleteMapping("/delete")
     public ResponseEntity<SuccessResponse<String>> deleteByIdTransaccion(@RequestBody TransactionId id) {
     	System.out.println("Entrando DeleteMapping");
-        return transaccionService.deleteByIdTransaccion(id);
+        return service.deleteByIdTransaccion(id);
     }
 }

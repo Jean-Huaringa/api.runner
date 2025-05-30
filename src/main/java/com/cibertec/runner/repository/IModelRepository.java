@@ -7,17 +7,17 @@ import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.cibertec.runner.model.Model;
+import com.cibertec.runner.model.Garment;
 
 
 @Repository
-public interface IModelRepository extends JpaRepository<Model, Integer>{
+public interface IModelRepository extends JpaRepository<Garment, Integer>{
 	
-	List<Model> findAllByEstado(Boolean estado);
-	List<Model> findByIdMrc(Integer idMrc);
+	List<Garment> findAllByState(Boolean state);
+	List<Garment> findByIdBrd(Integer idBrd);
 	
 	@Procedure(procedureName = "filtrar_modelos")
-	List<Model> filtrarModelos(
+	List<Garment> filtrarModelos(
 	    @Param("p_id_clr") String idClr,
 	    @Param("p_id_tll") String idTll,
 	    @Param("p_id_ctg") String idCtg,

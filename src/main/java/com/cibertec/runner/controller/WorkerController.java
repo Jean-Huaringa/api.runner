@@ -15,43 +15,43 @@ import com.cibertec.runner.dto.request.WorkerDTO;
 import com.cibertec.runner.service.WorkerService;
 
 @RestController
-@RequestMapping("/api/trabajador")
+@RequestMapping("/api/worker")
 public class WorkerController {
 
     @Autowired
-    private WorkerService trabajadorService;
+    private WorkerService service;
 
     // Listados
     @GetMapping
     public Map<String, Object> listarTodos() {
-        return trabajadorService.listarTodos();
+        return service.listarTodos();
     }
 
     @GetMapping("/activos")
     public Map<String, Object> listarActivos() {
-        return trabajadorService.listarActivos();
+        return service.listarActivos();
     }
 
     @GetMapping("/inactivos")
     public Map<String, Object> listarInactivos() {
-        return trabajadorService.listarInactivos();
+        return service.listarInactivos();
     }
 
     // Obtener por ID
     @GetMapping("/{id}")
     public Map<String, Object> obtenerPorId(@PathVariable Integer id) {
-        return trabajadorService.obtenerPorId(id);
+        return service.obtenerPorId(id);
     }
 
     // Registrar
     @PostMapping
-    public Map<String, Object> registrar(@RequestBody WorkerDTO trabajador) {
-        return trabajadorService.registrar(trabajador);
+    public Map<String, Object> registrar(@RequestBody WorkerDTO workerDTO) {
+        return service.registrar(workerDTO);
     }
 
     // Eliminador lógico
     @DeleteMapping("/{id}")
     public Map<String, Object> eliminarLogico(@PathVariable Integer id) {
-        return trabajadorService.eliminarLogico(id);
+        return service.eliminarLogico(id);
     }
 }

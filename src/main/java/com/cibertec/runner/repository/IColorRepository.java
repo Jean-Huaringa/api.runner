@@ -8,5 +8,5 @@ import com.cibertec.runner.model.Color;
 @Repository
 public interface IColorRepository extends JpaRepository<Color, Integer> {
 
-	boolean existsByNombre(String nombre);
+	boolean existsByName(String name);
 }

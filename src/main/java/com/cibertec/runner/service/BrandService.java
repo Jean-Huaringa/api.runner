@@ -9,13 +9,13 @@ import com.cibertec.runner.model.Brand;
 
 public interface BrandService {
 
-	public ResponseEntity<SuccessResponse<List<Brand>>> findAllListMarcas();
+	ResponseEntity<SuccessResponse<List<Brand>>> findAllBrand();
 	
-	public ResponseEntity<SuccessResponse<Brand>> findByIdMarca(Integer id);
+	ResponseEntity<SuccessResponse<Brand>> findByIdBrand(Integer id);
 	
-	public ResponseEntity<SuccessResponse<Brand>> saveMarca(Brand brand);
+	ResponseEntity<SuccessResponse<Brand>> saveBrand(Brand brand);
 	
-	public ResponseEntity<SuccessResponse<Brand>> updateMarca(Brand brand, Integer id);
+	ResponseEntity<SuccessResponse<Brand>> updateBrand(Brand brand, Integer id);
 	
-	public ResponseEntity<SuccessResponse<String>> deleteByIdMarca(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteByIdBrand(Integer id);
 }

@@ -9,13 +9,13 @@ import com.cibertec.runner.model.Material;
 
 public interface MaterialService {
 
-	public ResponseEntity<SuccessResponse<List<Material>>> findAllMateriales();
+	ResponseEntity<SuccessResponse<List<Material>>> findAllMaterial();
 	
-	public ResponseEntity<SuccessResponse<Material>> findByIdMateriales(Integer id);
+	ResponseEntity<SuccessResponse<Material>> findByIdMaterial(Integer id);
 	
-	public ResponseEntity<SuccessResponse<Material>> saveMaterial(Material material);
+	ResponseEntity<SuccessResponse<Material>> saveMaterial(Material material);
 	
-	public ResponseEntity<SuccessResponse<Material>> updateMaterial(Material material, Integer id);
+	ResponseEntity<SuccessResponse<Material>> updateMaterial(Material material, Integer id);
 	
-	public ResponseEntity<SuccessResponse<String>> deleteByIdMaterial(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteByIdMaterial(Integer id);
 }

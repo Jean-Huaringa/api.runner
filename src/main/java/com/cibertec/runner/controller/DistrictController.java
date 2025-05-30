@@ -18,33 +18,33 @@ import com.cibertec.runner.model.District;
 import com.cibertec.runner.service.implement.DistrictServiceImp;
 
 @RestController
-@RequestMapping("/api/distrito")
+@RequestMapping("/api/district")
 public class DistrictController {
 	@Autowired
-	private DistrictServiceImp disSer;
+	private DistrictServiceImp service;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<District>>> findAllDistrito(){
-		return disSer.findAllDistrito();
+	public ResponseEntity<SuccessResponse<List<District>>> findAllDistrict(){
+		return service.findAllDistrict();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<District>> findByIdDistrito(@PathVariable Integer id){
-		return disSer.findByIdDistrito(id);
+	public ResponseEntity<SuccessResponse<District>> findByIdDistrict(@PathVariable Integer id){
+		return service.findByIdDistrict(id);
 	}
 	
     @PostMapping
-    public ResponseEntity<SuccessResponse<District>> saveDistrito(@RequestBody District distrito) {
-        return disSer.saveDistrito(distrito);
+    public ResponseEntity<SuccessResponse<District>> saveDistrict(@RequestBody District district) {
+        return service.saveDistrict(district);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<SuccessResponse<District>> updateDistrito(@RequestBody District distrito, @PathVariable Integer id) {
-        return disSer.updateDistrito(distrito, id);
+    public ResponseEntity<SuccessResponse<District>> updateDistrict(@RequestBody District district, @PathVariable Integer id) {
+        return service.updateDistrict(district, id);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<SuccessResponse<String>> deleteDistrito(@PathVariable Integer id) {
-        return disSer.deleteDistrito(id);
+    public ResponseEntity<SuccessResponse<String>> deleteDistrict(@PathVariable Integer id) {
+        return service.deleteDistrict(id);
     }
 }

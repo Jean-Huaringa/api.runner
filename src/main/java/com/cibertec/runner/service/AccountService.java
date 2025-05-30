@@ -8,14 +8,14 @@ import com.cibertec.runner.dto.response.UserResponse;
 
 public interface AccountService {
 	
-	public void registerUser(RegisterUserDTO request);
+	void registerUser(RegisterUserDTO request);
 	
-	public void updateUser(UpdateUserDTO request);
+	void updateUser(UpdateUserDTO request);
 	
-	public String signin(LoginDTO request);
+	String signin(LoginDTO request);
 	
-	public void updatePassword(UpdatePasswordDTO request);
+	void updatePassword(UpdatePasswordDTO request);
 	
-	public UserResponse getUsuarioLogueado(); 
+	UserResponse getUsuarioLogueado(); 
 
 }

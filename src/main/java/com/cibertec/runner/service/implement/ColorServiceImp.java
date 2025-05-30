@@ -64,7 +64,7 @@ public class ColorServiceImp implements ColorService {
 	@Override
 	public ResponseEntity<SuccessResponse<Color>> saveColor(Color color){
 		
-		if(repository.existsByNombre(color.getName())) {
+		if(repository.existsByName(color.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
@@ -87,7 +87,7 @@ public class ColorServiceImp implements ColorService {
 	@Override
 	public ResponseEntity<SuccessResponse<Color>> updateColor(Color color, Integer id) {
 
-		if(repository.existsByNombre(color.getName())) {
+		if(repository.existsByName(color.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		

@@ -23,7 +23,7 @@ public class MaterialServiceImp implements MaterialService{
     private IMaterialRepository repository;
 
     @Override
-    public ResponseEntity<SuccessResponse<List<Material>>> findAllMateriales() {
+    public ResponseEntity<SuccessResponse<List<Material>>> findAllMaterial() {
         List<Material> materiales = repository.findAll();
 
         if (materiales.isEmpty()) {
@@ -41,7 +41,7 @@ public class MaterialServiceImp implements MaterialService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Material>> findByIdMateriales(Integer id) {
+    public ResponseEntity<SuccessResponse<Material>> findByIdMaterial(Integer id) {
         Material material = repository.findById(id).orElse(null);
 
         if (material == null) {
@@ -59,13 +59,13 @@ public class MaterialServiceImp implements MaterialService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Material>> saveMaterial(Material m) {
-		if(repository.existsByNombre(m.getName())) {
+    public ResponseEntity<SuccessResponse<Material>> saveMaterial(Material material) {
+		if(repository.existsByName(material.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
     	Material mat = new Material();
-    	mat.setName(m.getName());
+    	mat.setName(material.getName());
         Material nuevoMaterial = repository.save(mat);
 
         SuccessResponse<Material> success = SuccessResponse.<Material>builder()
@@ -79,14 +79,14 @@ public class MaterialServiceImp implements MaterialService{
     }
 
     @Override
-    public ResponseEntity<SuccessResponse<Material>> updateMaterial(Material m, Integer id) {
+    public ResponseEntity<SuccessResponse<Material>> updateMaterial(Material material, Integer id) {
         Material existente = repository.findById(id).orElse(null);
 
         if (existente == null) {
         	throw new NoResultException("No se encontro el codigo de material");
         }
 
-        existente.setName(m.getName());
+        existente.setName(material.getName());
         Material actualizado = repository.save(existente);
 
         SuccessResponse<Material> success = SuccessResponse.<Material>builder()

@@ -7,5 +7,5 @@ import com.cibertec.runner.model.Category;
 
 @Repository
 public interface ICategoryRepository extends JpaRepository<Category, Integer> {
-	boolean existsByNombre(String nombre);
+	boolean existsByName(String name);
 }

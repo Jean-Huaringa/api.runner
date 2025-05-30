@@ -5,7 +5,7 @@ import java.util.List;
 import com.cibertec.runner.model.Brand;
 import com.cibertec.runner.model.Category;
 import com.cibertec.runner.model.Material;
-import com.cibertec.runner.model.Person;
+import com.cibertec.runner.model.Gender;
 import com.cibertec.runner.model.Product;
 
 import lombok.Data;
@@ -23,7 +23,7 @@ public class ModeloProductoResponse {
 	private Integer idMtl;
     private Category categoria;
     private Brand marca;
-    private Person persona;
+    private Gender persona;
     private Material material;
     private List<Product> productos;
 }

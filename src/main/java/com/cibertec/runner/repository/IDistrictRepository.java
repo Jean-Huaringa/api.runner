@@ -8,5 +8,5 @@ import com.cibertec.runner.model.District;
 @Repository
 public interface IDistrictRepository extends JpaRepository<District, Integer> {
 
-	boolean existsByNombre(String nombre);
+	boolean existsByName(String name);
 }

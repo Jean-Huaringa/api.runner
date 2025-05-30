@@ -23,7 +23,7 @@ public class CategoryServiceImp implements CategoryService {
 	private ICategoryRepository repository;
 
 	@Override
-	public ResponseEntity<SuccessResponse<List<Category>>> findAllListCategoria() {
+	public ResponseEntity<SuccessResponse<List<Category>>> findAllCategory() {
 		
 		List<Category> categorias = repository.findAll();
 
@@ -42,7 +42,7 @@ public class CategoryServiceImp implements CategoryService {
 	}
 
 	@Override
-	public ResponseEntity<SuccessResponse<Category>> findByIdCategoria(Integer id) {
+	public ResponseEntity<SuccessResponse<Category>> findByIdCategory(Integer id) {
 
 		Category categoria = repository.findById(id).orElse(null);
 
@@ -61,14 +61,14 @@ public class CategoryServiceImp implements CategoryService {
 	}
 
 	@Override
-	public ResponseEntity<SuccessResponse<Category>> saveCategoria(Category c) {
+	public ResponseEntity<SuccessResponse<Category>> saveCategory(Category category) {
 
-		if (repository.existsByNombre(c.getName())) {
+		if (repository.existsByName(category.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
 		Category categoria = new Category();
-		categoria.setName(c.getName());
+		categoria.setName(category.getName());
 
 		Category cate = repository.save(categoria);
 		SuccessResponse<Category> success = SuccessResponse.<Category>builder()
@@ -83,9 +83,9 @@ public class CategoryServiceImp implements CategoryService {
 	}
 
 	@Override
-	public ResponseEntity<SuccessResponse<Category>> updateCategoria(Category c, Integer id) {
+	public ResponseEntity<SuccessResponse<Category>> updateCategory(Category category, Integer id) {
 
-		if (repository.existsByNombre(c.getName())) {
+		if (repository.existsByName(category.getName())) {
 			throw new DataIntegrityViolationException("Error en duplicidad de datos");
 		}
 		
@@ -95,7 +95,7 @@ public class CategoryServiceImp implements CategoryService {
 			throw new NoResultException("No se encontro el codigo de la categoria");
 		}
 
-		categoria.setName(c.getName());
+		categoria.setName(category.getName());
 
 		Category update = repository.save(categoria);
 
@@ -110,7 +110,7 @@ public class CategoryServiceImp implements CategoryService {
 	}
 
 	@Override
-	public ResponseEntity<SuccessResponse<String>> deleteByIdCategoria(Integer id) {
+	public ResponseEntity<SuccessResponse<String>> deleteByIdCategory(Integer id) {
 
 		Category buscaCategoria = repository.findById(id).orElse(null);
 

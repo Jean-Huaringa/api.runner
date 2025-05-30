@@ -19,35 +19,35 @@ import com.cibertec.runner.service.implement.BrandServiceImp;
 
 
 @RestController
-@RequestMapping("/api/marca")
+@RequestMapping("/api/brand")
 public class BrandController {
 	
 	@Autowired
-	private BrandServiceImp ms;
+	private BrandServiceImp service;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Brand>>> findAllListMarcas() {
-		return ms.findAllListMarcas();
+	public ResponseEntity<SuccessResponse<List<Brand>>> findAllBrand() {
+		return service.findAllBrand();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Brand>> findByIdMarca(@PathVariable Integer id) {
-		return ms.findByIdMarca(id);
+	public ResponseEntity<SuccessResponse<Brand>> findByIdBrand(@PathVariable Integer id) {
+		return service.findByIdBrand(id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<SuccessResponse<Brand>> saveMarca(@RequestBody Brand m) {
-		return ms.saveMarca(m);
+	public ResponseEntity<SuccessResponse<Brand>> saveBrand(@RequestBody Brand brand) {
+		return service.saveBrand(brand);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Brand>> updateMarca(@RequestBody Brand m, @PathVariable Integer id) {
-		return ms.updateMarca(m, id);
+	public ResponseEntity<SuccessResponse<Brand>> updateBrand(@RequestBody Brand brand, @PathVariable Integer id) {
+		return service.updateBrand(brand, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SuccessResponse<String>> deleteByIdMarca(@PathVariable Integer id) {
-		return ms.deleteByIdMarca(id);
+	public ResponseEntity<SuccessResponse<String>> deleteByIdBrand(@PathVariable Integer id) {
+		return service.deleteByIdBrand(id);
 	}
 	
 }

@@ -17,54 +17,54 @@ import com.cibertec.runner.dto.request.FilterModelDTO;
 import com.cibertec.runner.dto.request.ModelDTO;
 import com.cibertec.runner.dto.response.ModeloProductoResponse;
 import com.cibertec.runner.dto.response.SuccessResponse;
-import com.cibertec.runner.model.Model;
+import com.cibertec.runner.model.Garment;
 import com.cibertec.runner.service.implement.ModelServiceImp;
 
 
 @RestController
-@RequestMapping("/api/modelo")
+@RequestMapping("/api/model")
 public class ModelController {
 	
 	@Autowired
-	private ModelServiceImp modeloService;
+	private ModelServiceImp service;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Model>>> findAllModelos(){
-		return modeloService.findAllModelos();
+	public ResponseEntity<SuccessResponse<List<Garment>>> findAllModel(){
+		return service.findAllModel();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Model>> findByIdModelos(@PathVariable Integer id){
-		return modeloService.findByIdModel(id);
+	public ResponseEntity<SuccessResponse<Garment>> findByIdModel(@PathVariable Integer id){
+		return service.findByIdModel(id);
 	}
 	
 	@PostMapping
-    public ResponseEntity<SuccessResponse<Model>> saveModelo(@RequestBody ModelDTO modeloDTO) {
-        return modeloService.saveModelo(modeloDTO);
+    public ResponseEntity<SuccessResponse<Garment>> saveModel(@RequestBody ModelDTO modelDTO) {
+        return service.saveModel(modelDTO);
     }
 	
 	@PutMapping("/{id}")
-    public ResponseEntity<SuccessResponse<Model>> updateModelo(@RequestBody ModelDTO modeloDTO, @PathVariable Integer id) {
-        return modeloService.updateModelo(modeloDTO, id);
+    public ResponseEntity<SuccessResponse<Garment>> updateModel(@RequestBody ModelDTO modelDTO, @PathVariable Integer id) {
+        return service.updateModel(modelDTO, id);
     }
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SuccessResponse<String>> deleteByIdModelo(@PathVariable Integer id) {
-	    return modeloService.deleteByIdModelo(id);
+	public ResponseEntity<SuccessResponse<String>> deleteByIdModel(@PathVariable Integer id) {
+	    return service.deleteByIdModel(id);
 	}
 	
 	@GetMapping("/marca/{idMrc}")
-	public ResponseEntity<SuccessResponse<List<Model>>> findByIdMrc(@PathVariable Integer idMrc) {
-	    return modeloService.findByIdMrc(idMrc);
+	public ResponseEntity<SuccessResponse<List<Garment>>> findByIdMrc(@PathVariable Integer idMrc) {
+	    return service.findByIdMrc(idMrc);
 	}
 	
 	@PostMapping("/filtros")
-	public ResponseEntity<SuccessResponse<List<Model>>> findByAttributes(@RequestBody FilterModelDTO filtro) {
-	    return modeloService.findByAttributes(filtro);
+	public ResponseEntity<SuccessResponse<List<Garment>>> findByAttributes(@RequestBody FilterModelDTO filtro) {
+	    return service.findByAttributes(filtro);
 	}
 	
 	@GetMapping("/productos-modelo/{id}")
-	public ResponseEntity<SuccessResponse<ModeloProductoResponse>> findProductosByModelo(@PathVariable Integer id) {
-	    return modeloService.findProductosByModelo(id);
+	public ResponseEntity<SuccessResponse<ModeloProductoResponse>> findProductosByModel(@PathVariable Integer id) {
+	    return service.findProductosByModel(id);
 	}
 }

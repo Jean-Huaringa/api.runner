@@ -36,6 +36,6 @@ public class Worker {
     
     @OneToOne
 //    @MapsId
-    @JoinColumn(name = "id_wrk", referencedColumnName = "id_wrk", insertable = false, updatable = false)
+    @JoinColumn(name = "id_wrk", referencedColumnName = "id_usr", insertable = false, updatable = false)
     private User user;
 }

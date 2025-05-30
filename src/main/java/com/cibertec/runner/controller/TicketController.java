@@ -23,34 +23,34 @@ import com.cibertec.runner.service.implement.TicketServiceImp;
 public class TicketController {
 
 	@Autowired
-	private TicketServiceImp tks;
+	private TicketServiceImp service;
 
 	@GetMapping
 	public ResponseEntity<SuccessResponse<List<Ticket>>> findAllTickets() {
-		return tks.findAllTickets();
+		return service.findAllTickets();
 	}
 
 	// Obtener por ID
 	@GetMapping("/{id}")
 	public ResponseEntity<SuccessResponse<Ticket>> findByIdTicket(@PathVariable Integer id) {
-		return tks.findByIdTicket(id);
+		return service.findByIdTicket(id);
 	}
 
 	// Registrar
 	@PostMapping
 	public ResponseEntity<SuccessResponse<Ticket>> saveTicket(@RequestBody TicketDTO ticketDTO) {
-		return tks.saveTicket(ticketDTO);
+		return service.saveTicket(ticketDTO);
 	}
 
 	// Actualizar
 	@PutMapping("/{id}")
 	public ResponseEntity<SuccessResponse<Ticket>> updateTicket(@RequestBody TicketDTO ticketDTO, @PathVariable Integer id) {
-		return tks.updateTicket(ticketDTO, id);
+		return service.updateTicket(ticketDTO, id);
 	}
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<SuccessResponse<String>> deleteTicket(@PathVariable Integer id) {
-		return tks.deleteTicket(id);
+		return service.deleteTicket(id);
 	}
 
 }

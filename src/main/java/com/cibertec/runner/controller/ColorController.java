@@ -22,30 +22,30 @@ import com.cibertec.runner.service.implement.ColorServiceImp;
 public class ColorController {
 	
 	@Autowired
-	private ColorServiceImp colSer;
+	private ColorServiceImp service;
 	
 	@GetMapping
 	public ResponseEntity<SuccessResponse<List<Color>>> findAllListColor(){
-		return colSer.findAllColor();
+		return service.findAllColor();
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<SuccessResponse<Color>> findByIdColor(@PathVariable Integer id){
-		return colSer.findByIdColor(id);
+		return service.findByIdColor(id);
 	}
 	
     @PostMapping
     public ResponseEntity<SuccessResponse<Color>> saveColor(@RequestBody Color color) {
-        return colSer.saveColor(color);
+        return service.saveColor(color);
     }
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<SuccessResponse<Color>> updateColor(@RequestBody Color color, @PathVariable Integer id) {
-		return colSer.updateColor(color, id);
+		return service.updateColor(color, id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<SuccessResponse<String>> deleteByIdColor(@PathVariable Integer id) {
-		return colSer.deleteByIdColor(id);
+		return service.deleteByIdColor(id);
 	}
 }

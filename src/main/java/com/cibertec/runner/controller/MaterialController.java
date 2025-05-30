@@ -22,30 +22,30 @@ import com.cibertec.runner.service.implement.MaterialServiceImp;
 public class MaterialController {
 	
 	@Autowired
-	private MaterialServiceImp ms;
+	private MaterialServiceImp service;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Material>>> findAllMateriales() {
-		return ms.findAllMateriales();
+	public ResponseEntity<SuccessResponse<List<Material>>> findAllMaterial() {
+		return service.findAllMaterial();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Material>> findByIdMateriales(@PathVariable Integer id) {
-		return ms.findByIdMateriales(id);
+	public ResponseEntity<SuccessResponse<Material>> findByIdMaterial(@PathVariable Integer id) {
+		return service.findByIdMaterial(id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<SuccessResponse<Material>> saveMaterial(@RequestBody Material m) {
-		return ms.saveMaterial(m);
+	public ResponseEntity<SuccessResponse<Material>> saveMaterial(@RequestBody Material material) {
+		return service.saveMaterial(material);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Material>> updateMaterial(@RequestBody Material m, @PathVariable Integer id) {
-		return ms.updateMaterial(m, id);
+	public ResponseEntity<SuccessResponse<Material>> updateMaterial(@RequestBody Material material, @PathVariable Integer id) {
+		return service.updateMaterial(material, id);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<SuccessResponse<String>> deleteByIdMaterial(@PathVariable Integer id) {
-		return ms.deleteByIdMaterial(id);
+		return service.deleteByIdMaterial(id);
 	}
 }

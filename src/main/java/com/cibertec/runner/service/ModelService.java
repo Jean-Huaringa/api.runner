@@ -8,24 +8,24 @@ import com.cibertec.runner.dto.request.FilterModelDTO;
 import com.cibertec.runner.dto.request.ModelDTO;
 import com.cibertec.runner.dto.response.ModeloProductoResponse;
 import com.cibertec.runner.dto.response.SuccessResponse;
-import com.cibertec.runner.model.Model;
+import com.cibertec.runner.model.Garment;
 
 
 public interface ModelService {
 	
-	public ResponseEntity<SuccessResponse<List<Model>>> findAllModelos();
+	ResponseEntity<SuccessResponse<List<Garment>>> findAllModel();
 
-	public ResponseEntity<SuccessResponse<Model>> findByIdModel(Integer id);
+	ResponseEntity<SuccessResponse<Garment>> findByIdModel(Integer id);
 	
-	public ResponseEntity<SuccessResponse<Model>> saveModelo(ModelDTO modeloDTO);
+	ResponseEntity<SuccessResponse<Garment>> saveModel(ModelDTO modeloDTO);
 	
-	public ResponseEntity<SuccessResponse<Model>> updateModelo(ModelDTO modeloDTO, Integer id);
+	ResponseEntity<SuccessResponse<Garment>> updateModel(ModelDTO modeloDTO, Integer id);
 	
-	public ResponseEntity<SuccessResponse<String>> deleteByIdModelo(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteByIdModel(Integer id);
 
-	public ResponseEntity<SuccessResponse<List<Model>>> findByIdMrc(Integer id);
+	ResponseEntity<SuccessResponse<List<Garment>>> findByIdMrc(Integer id);
 	
-	public ResponseEntity<SuccessResponse<List<Model>>> findByAttributes(FilterModelDTO filtro);
+	ResponseEntity<SuccessResponse<List<Garment>>> findByAttributes(FilterModelDTO filtro);
 	
-	public ResponseEntity<SuccessResponse<ModeloProductoResponse>> findProductosByModelo(Integer id);
+	ResponseEntity<SuccessResponse<ModeloProductoResponse>> findProductosByModel(Integer id);
 }

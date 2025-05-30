@@ -11,13 +11,13 @@ import com.cibertec.runner.model.District;
 @Service
 public interface DistrictService {
 
-	public ResponseEntity<SuccessResponse<District>> findByIdDistrito(Integer id);
+	ResponseEntity<SuccessResponse<District>> findByIdDistrict(Integer id);
 	
-	public ResponseEntity<SuccessResponse<List<District>>> findAllDistrito();
+	ResponseEntity<SuccessResponse<List<District>>> findAllDistrict();
 	
-	public ResponseEntity<SuccessResponse<District>> saveDistrito(District district);
+	ResponseEntity<SuccessResponse<District>> saveDistrict(District district);
 	
-	public ResponseEntity<SuccessResponse<District>> updateDistrito(District district, Integer id);
+	ResponseEntity<SuccessResponse<District>> updateDistrict(District district, Integer id);
 	
-	public ResponseEntity<SuccessResponse<String>> deleteDistrito(Integer id);
+	ResponseEntity<SuccessResponse<String>> deleteDistrict(Integer id);
 }

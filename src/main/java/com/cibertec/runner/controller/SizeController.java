@@ -18,35 +18,35 @@ import com.cibertec.runner.model.Size;
 import com.cibertec.runner.service.implement.SizeServiceImp;
 
 @RestController
-@RequestMapping("/api/talla")
+@RequestMapping("/api/size")
 public class SizeController {
 
 	@Autowired
-	private SizeServiceImp talRepo;
+	private SizeServiceImp service;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Size>>> findAllTalla(){
-		return talRepo.findAllTalla();
+	public ResponseEntity<SuccessResponse<List<Size>>> findAllSize(){
+		return service.findAllSize();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Size>> findByIdTalla(@PathVariable Integer id){
-		return talRepo.findByIdTalla(id);
+	public ResponseEntity<SuccessResponse<Size>> findByIdSize(@PathVariable Integer id){
+		return service.findByIdSize(id);
 	}
 	
     @PostMapping
-    public ResponseEntity<SuccessResponse<Size>> saveTalla(@RequestBody Size talla) {
-        return talRepo.saveTalla(talla);
+    public ResponseEntity<SuccessResponse<Size>> saveSize(@RequestBody Size size) {
+        return service.saveSize(size);
     }
     
     @PutMapping("/{id}")
-    public ResponseEntity<SuccessResponse<Size>> updateTallla(@RequestBody Size talla, @PathVariable Integer id) {
-        return talRepo.updateTallla(talla, id);
+    public ResponseEntity<SuccessResponse<Size>> updateSize(@RequestBody Size size, @PathVariable Integer id) {
+        return service.updateSize(size, id);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<SuccessResponse<String>> deleteTalla(@PathVariable Integer id) {
-        return talRepo.deleteTalla(id);
+    public ResponseEntity<SuccessResponse<String>> deleteSize(@PathVariable Integer id) {
+        return service.deleteSize(id);
     }
 	
 }

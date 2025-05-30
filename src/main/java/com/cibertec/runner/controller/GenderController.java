@@ -14,39 +14,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cibertec.runner.dto.response.SuccessResponse;
-import com.cibertec.runner.model.Person;
-import com.cibertec.runner.service.implement.PersonServiceImp;
+import com.cibertec.runner.model.Gender;
+import com.cibertec.runner.service.implement.GenderServiceImp;
 
 @RestController
-@RequestMapping("/api/persona")
-public class PersonaController {
+@RequestMapping("/api/gender")
+public class GenderController {
 	
 	@Autowired
-	private PersonServiceImp ps;
+	private GenderServiceImp service;
 	
 	@GetMapping
-	public ResponseEntity<SuccessResponse<List<Person>>> findAllPersonas() {
-		return ps.findAllPersonas();
+	public ResponseEntity<SuccessResponse<List<Gender>>> findAllPerson() {
+		return service.findAllPerson();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Person>> findByIdPersona(@PathVariable Integer id) {
-		return ps.findByIdPersona(id);
+	public ResponseEntity<SuccessResponse<Gender>> findByIdPerson(@PathVariable Integer id) {
+		return service.findByIdPerson(id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<SuccessResponse<Person>> savePersona(@RequestBody Person p) {
-		return ps.savePersona(p);
+	public ResponseEntity<SuccessResponse<Gender>> savePerson(@RequestBody Gender gender) {
+		return service.savePerson(gender);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<SuccessResponse<Person>> updatePersona(@RequestBody Person p, @PathVariable Integer id) {
-		return ps.updatePersona(p, id);
+	public ResponseEntity<SuccessResponse<Gender>> updatePerson(@RequestBody Gender gender, @PathVariable Integer id) {
+		return service.updatePerson(gender, id);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<SuccessResponse<String>> deleteByIdPersona(@PathVariable Integer id) {
-		return ps.deleteByIdPersona(id);
+	public ResponseEntity<SuccessResponse<String>> deleteByIdPerson(@PathVariable Integer id) {
+		return service.deleteByIdPerson(id);
 	}
 
 }
