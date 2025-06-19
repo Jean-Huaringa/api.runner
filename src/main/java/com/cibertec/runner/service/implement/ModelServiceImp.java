@@ -15,7 +15,6 @@ import com.cibertec.runner.dto.request.ModelDTO;
 import com.cibertec.runner.dto.response.ModeloProductoResponse;
 import com.cibertec.runner.dto.response.SuccessResponse;
 import com.cibertec.runner.model.Garment;
-import com.cibertec.runner.model.Product;
 import com.cibertec.runner.repository.IModelRepository;
 import com.cibertec.runner.repository.IProductRepository;
 import com.cibertec.runner.service.ModelService;
